@@ -1,0 +1,10 @@
+POST https://sms-activate.guru/stubs/apiMobile.php
+Content-Type: application/x-www-form-urlencoded
+
+action=countriesStackRender
+&service=go
+&activationType=0
+&change=true
+&render=true
+&forward=0
+&v=2
