@@ -9,7 +9,7 @@ export default defineEventHandler(async () => {
   }) => ({
     slug: shortName,
     name,
-    logoUrl: `https://smsactivate.s3.eu-central-1.amazonaws.com/assets/ico/${shortName}0.webp`,
+    logoUrl: `https://smsvirtual.ru/static/service_icons/${shortName}.jpeg`,
   }))
 
   return {

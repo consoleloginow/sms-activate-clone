@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
   }) => ({
     name,
     code: country,
-    flagUrl: `https://smsactivate.s3.eu-central-1.amazonaws.com/assets/ico/country/${country}.svg`,
+    flagUrl: `https://smsvirtual.ru/static/country_icons/${country}.png`,
     count,
     price: prices.min,
   }))
