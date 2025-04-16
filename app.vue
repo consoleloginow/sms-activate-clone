@@ -1,14 +1,28 @@
 <script lang="ts" setup>
-const { data: getItemsData, status: getItemsStatus } = useFetch('/api/catalog/items', {
+import {
+  Drawer,
+  DrawerContent,
+} from '@/components/ui/drawer'
+
+const { data: getItemsData, status: getItemsStatus } = useFetch('/api/stock/items', {
   lazy: true,
 })
 
-const selectedItem = ref<{ slug: string }>()
+const selectedItem = ref<StockItem>()
 
-const { data: getCountriesData, status: getCountriesStatus } = useFetch(() => `/api/catalog/items/${selectedItem.value?.slug}/countries`, {
+const { data: getCountriesData, status: getCountriesStatus } = useFetch(() => `/api/stock/items/${selectedItem.value?.slug}/countries`, {
   lazy: true,
   immediate: false,
   watch: [selectedItem],
+})
+
+const isDrawerOpen = computed({
+  get: () => !!selectedItem.value,
+  set: (value) => {
+    if (!value) {
+      selectedItem.value = undefined
+    }
+  },
 })
 </script>
 
@@ -19,25 +33,32 @@ const { data: getCountriesData, status: getCountriesStatus } = useFetch(() => `/
     </div>
 
     <template v-if="getItemsData?.items">
-      <div v-for="item in getItemsData?.items" :key="item.slug">
-        <div class="flex items-center p-2" @click="selectedItem = item">
-          <img class="size-10 rounded" :src="item.logoUrl">
-          <span class="grow mx-2 text-lg font-semibold">{{ item.name }}</span>
+      <div class="p-2">
+        <div v-for="item in getItemsData?.items" :key="item.slug">
+          <div class="flex items-center p-2" @click="selectedItem = item">
+            <img class="size-8 rounded-lg" :src="item.logoUrl">
+            <span class="grow mx-2 text-lg font-semibold">{{ item.name }}</span>
+          </div>
         </div>
       </div>
 
-      <UDrawer v-model:open="selectedItem">
-        <template #content>
+      <Drawer v-model:open="isDrawerOpen">
+        <DrawerContent>
           <div v-if="getCountriesStatus === 'pending'">
             loading...
           </div>
 
-          <div v-if="getCountriesData?.countries" class="overflow-y-scroll">
+          <div v-if="getCountriesData?.countries" class="overflow-y-scroll p-2">
+            <div class="p-2 flex items-center rounded-xl bg-muted">
+              <img class="size-8 rounded-lg" :src="selectedItem?.logoUrl">
+              <span class="grow mx-2 text-lg font-semibold">{{ selectedItem?.name }}</span>
+            </div>
+
             <div v-for="country in getCountriesData?.countries" :key="country.code">
               <div class="flex items-center p-2">
-                <img class="w-10 h-7.5 rounded" :src="country.flagUrl">
+                <img class="size-8 rounded-lg" :src="country.flagUrl">
                 <div class="grow mx-2">
-                  <div class="font-semibold">
+                  <div class="leading-none font-semibold">
                     {{ country.name }}
                   </div>
                   <div class="text-xs">
@@ -48,8 +69,8 @@ const { data: getCountriesData, status: getCountriesStatus } = useFetch(() => `/
               </div>
             </div>
           </div>
-        </template>
-      </UDrawer>
+        </DrawerContent>
+      </Drawer>
     </template>
   </div>
 </template>
