@@ -9,8 +9,9 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "lint": "eslint",
-    "lint:fix": "eslint --fix"
+    "lint": "eslint  --fix --cache",
+    "shadcn-vue-add": "shadcn-vue add",
+    "postshadcn-vue-add": "pnpm run lint"
   },
   "dependencies": {
     "@antfu/eslint-config": "^4.11.0",
@@ -23,6 +24,7 @@
     "nuxt": "^3.16.1",
     "reka-ui": "^2.2.0",
     "shadcn-nuxt": "2.0.1",
+    "shadcn-vue": "^2.0.1",
     "tailwind-merge": "^3.2.0",
     "tailwindcss": "^4.0.15",
     "tw-animate-css": "^1.2.5",
