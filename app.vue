@@ -47,20 +47,19 @@ const isDrawerOpen = computed({
 
       <Drawer v-model:open="isDrawerOpen">
         <DrawerContent>
-          <div class="h-screen overflow-y-scroll">
-            <div class="m-2 p-2 flex items-center rounded-xl bg-muted">
-              <img class="size-8 rounded-lg" :src="selectedItem?.logoUrl">
-              <span class="grow mx-2 text-lg font-semibold">{{ selectedItem?.name }}</span>
-              <DrawerClose>
-                <X class="size-5" />
-              </DrawerClose>
-            </div>
-
+          <div class="m-2 p-2 flex items-center rounded-xl bg-muted">
+            <img class="size-8 rounded-lg" :src="selectedItem?.logoUrl">
+            <span class="grow mx-2 text-lg font-semibold">{{ selectedItem?.name }}</span>
+            <DrawerClose>
+              <X class="size-5" />
+            </DrawerClose>
+          </div>
+          <!--
             <div v-if="getCountriesStatus === 'pending'">
               loading...
-            </div>
+            </div> -->
 
-            <SelectVerifType />
+          <SelectVerifType />
 
           <!-- <div v-if="getCountriesData?.countries">
             <div v-for="country in getCountriesData?.countries" :key="country.code">
@@ -78,7 +77,6 @@ const isDrawerOpen = computed({
               </div>
             </div>
           </div> -->
-          </div>
         </DrawerContent>
       </Drawer>
     </template>
