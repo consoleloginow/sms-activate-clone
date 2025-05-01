@@ -3,7 +3,5 @@
 </script>
 
 <template>
-  <div class="grid h-screen">
-    <NuxtPage />
-  </div>
+  <div />
 </template>

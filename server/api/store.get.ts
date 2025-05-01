@@ -1,9 +1,7 @@
 import { getAllServicesDesktop } from '~/lib/sms-activate/stubs/apiMobile'
 
 export default defineEventHandler(async () => {
-  const data = await getAllServicesDesktop()
-
-  const items = data.data.map(({
+  const items = (await getAllServicesDesktop()).data.map(({
     name,
     shortName,
   }) => ({
