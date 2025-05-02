@@ -5,12 +5,13 @@ export default defineNuxtConfig({
     compatibilityVersion: 4,
   },
 
-  devtools: { enabled: false },
+  devtools: { enabled: true },
   modules: [
     '@nuxt/eslint',
     '@nuxt/ui',
     'shadcn-nuxt',
     '@nuxt/fonts',
+    '@vueuse/nuxt',
   ],
   css: ['~/assets/css/main.css'],
 })
