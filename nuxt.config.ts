@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     'shadcn-nuxt',
     '@nuxt/fonts',
     '@vueuse/nuxt',
+    '@pinia/nuxt',
   ],
   css: ['~/assets/css/main.css'],
 })

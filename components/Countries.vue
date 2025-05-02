@@ -1,23 +1,30 @@
 <script lang="ts" setup>
-import type { StoreCountry } from '~/shared/types/store'
+import type { StoreCountry, StoreItem } from '~/shared/types/store'
+import { useCountriesStore } from '~/stores/countries.store'
 
 const route = useRoute()
+const countriesStore = useCountriesStore()
 
-const countriesSearchQuery = useState<string>('countriesSearchQuery', () => '')
+const selectedItem = useState<Partial<StoreItem> | undefined>('selectedItem', () => undefined)
 
-const { data } = await useFetch(() => `/api/items/${route.params.item}/countries`, {
-  key: 'countriesSearch',
-  query: {
-    search: countriesSearchQuery,
-  },
-})
+if (!selectedItem.value) {
+  selectedItem.value = {
+    slug: route.params.item as string,
+  }
+}
+
+if (!countriesStore.data) {
+  await countriesStore.fetch()
+}
+
+selectedItem.value = countriesStore.data?.item
 
 const selectedCountry = useState<StoreCountry | undefined>('selectedCountry', () => undefined)
 </script>
 
 <template>
   <div>
-    <div v-for="country in data?.countries" :key="country.code" @click="selectedCountry = country">
+    <div v-for="country in countriesStore.data?.countries" :key="country.code" @click="selectedCountry = country">
       <div class="flex items-center py-2">
         <img class="ml-4 size-8 rounded-lg" :src="country.flagUrl">
         <div class="ml-4 grow">

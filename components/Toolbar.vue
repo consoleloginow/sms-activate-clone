@@ -1,18 +1,21 @@
 <script lang="ts" setup>
+import { useCountriesStore } from '~/stores/countries.store'
+import { useItemsSearchStore } from '~/stores/items-search.store'
+
 const route = useRoute()
+
+const countriesStore = useCountriesStore()
+const itemsSearchStore = useItemsSearchStore()
 
 const isItemsSearchFocused = useState('isItemsSearchFocused', () => false)
 const isCountriesSearchFocused = useState('isCountriesSearchFocused', () => false)
-
-const itemsSearchQuery = useState<string>('itemsSearchQuery', () => '')
-const countriesSearchQuery = useState<string>('countriesSearchQuery', () => '')
 </script>
 
 <template>
   <div class="fixed bottom-0 left-0 right-0 bg-muted p-4 shadow">
     <input
       v-if="route.name === 'index'"
-      v-model="itemsSearchQuery"
+      v-model="itemsSearchStore.searchQuery"
       type="search"
       placeholder="Search items..."
       class="w-full bg-background border p-2 rounded-xl mb-4"
@@ -21,7 +24,7 @@ const countriesSearchQuery = useState<string>('countriesSearchQuery', () => '')
     >
     <div v-if="route.name === 'store-item'" class="flex items-center">
       <input
-        v-model="countriesSearchQuery"
+        v-model="countriesStore.searchQuery"
         type="search"
         placeholder="Search countries..."
         class="w-full bg-background border p-2 rounded mb-4"

@@ -5,7 +5,16 @@ export default defineEventHandler(async (event) => {
   const query = getQuery(event) as { search?: string }
 
   const item = await (async () => {
-    const { name, shortName } = (await getAllServicesDesktop()).data.find(({ shortName }) => shortName === params.item_slug)!
+    const raw_item = (await getAllServicesDesktop()).data.find(({ shortName }) => shortName === params.item_slug)
+
+    if (!raw_item) {
+      throw createError({
+        statusCode: 404,
+        statusMessage: 'Item not found',
+      })
+    }
+
+    const { shortName, name } = raw_item
 
     return {
       slug: shortName,

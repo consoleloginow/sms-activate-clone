@@ -1,21 +1,19 @@
 <script lang="ts" setup>
 import type { StoreItem } from '~/shared/types/store'
+import { useItemsSearchStore } from '~/stores/items-search.store'
 
-const itemsSearchQuery = useState<string>('itemsSearchQuery', () => '')
+const itemsSearchStore = useItemsSearchStore()
 
-const { data } = await useFetch('/api/items', {
-  key: 'itemsSearch',
-  query: {
-    search: itemsSearchQuery,
-  },
-})
+if (!itemsSearchStore.data) {
+  await itemsSearchStore.fetch()
+}
 
 const selectedItem = useState<StoreItem | undefined>('selectedItem', () => undefined)
 </script>
 
 <template>
   <div>
-    <div v-for="item in data?.items" :key="item.slug">
+    <div v-for="item in itemsSearchStore.data?.items" :key="item.slug">
       <NuxtLink
         :to="`/store/${item.slug}`"
         class="flex items-center py-2"

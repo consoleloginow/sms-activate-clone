@@ -6,7 +6,7 @@ export interface StoreItem {
 
 export interface StoreCountry {
   name: string
-  code: string
+  code: number
   count: number
   price: number
   flagUrl: string
