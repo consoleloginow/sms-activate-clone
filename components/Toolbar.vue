@@ -1,35 +1,32 @@
 <script lang="ts" setup>
-import { useCountriesStore } from '~/stores/countries.store'
-import { useItemsSearchStore } from '~/stores/items-search.store'
+import { useSharedState } from '~/stores/useSharedState'
 
 const route = useRoute()
 
-const countriesStore = useCountriesStore()
-const itemsSearchStore = useItemsSearchStore()
-
-const isItemsSearchFocused = useState('isItemsSearchFocused', () => false)
-const isCountriesSearchFocused = useState('isCountriesSearchFocused', () => false)
+const {
+  isItemsSearchActive,
+  itemsSearch,
+  countriesSearch,
+} = storeToRefs(useSharedState())
 </script>
 
 <template>
   <div class="fixed bottom-0 left-0 right-0 bg-muted p-4 shadow">
     <input
       v-if="route.name === 'index'"
-      v-model="itemsSearchStore.searchQuery"
+      v-model="itemsSearch"
       type="search"
       placeholder="Search items..."
       class="w-full bg-background border p-2 rounded-xl mb-4"
-      @focusin="isItemsSearchFocused = true"
-      @focusout="isItemsSearchFocused = false"
+      @focusin="isItemsSearchActive = true"
+      @focusout="isItemsSearchActive = false"
     >
     <div v-if="route.name === 'store-item'" class="flex items-center">
       <input
-        v-model="countriesStore.searchQuery"
+        v-model="countriesSearch"
         type="search"
         placeholder="Search countries..."
         class="w-full bg-background border p-2 rounded mb-4"
-        @focusin="isCountriesSearchFocused = true"
-        @focusout="isCountriesSearchFocused = false"
       >
       <button>sort</button>
     </div>
