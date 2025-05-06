@@ -5,6 +5,6 @@ import Toolbar from '~/components/Toolbar.vue'
 <template>
   <div class="grid h-screen">
     <NuxtPage />
-    <Toolbar class="fixed bottom-0" />
+    <Toolbar />
   </div>
 </template>
