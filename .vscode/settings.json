@@ -55,7 +55,23 @@
   "editor.quickSuggestions": {
     "strings": "on"
   },
-  "tailwindCSS.classAttributes": ["class", "ui"],
+  "tailwindCSS.classAttributes": [
+    "class",
+
+    "appear-active-class",
+    "appear-from-class",
+    "appear-to-class",
+
+    "enter-active-class",
+    "enter-from-class",
+    "enter-to-class",
+
+    "leave-active-class",
+    "leave-from-class",
+    "leave-to-class",
+
+    "ui"
+  ],
   "tailwindCSS.experimental.classRegex": [
     ["ui:\\s*{([^)]*)\\s*}", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
   ]
