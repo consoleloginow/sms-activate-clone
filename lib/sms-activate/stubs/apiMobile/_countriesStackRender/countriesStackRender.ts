@@ -1,7 +1,7 @@
 import type responseExample from './countriesStackRender-response-example.json'
 
 export async function countriesStackRender(service: string) {
-  const response = await fetch('https://sms-activate.guru/stubs/apiMobile.php', {
+  const response = await fetch('https://sms-activate.ru/stubs/apiMobile.php', {
     method: 'POST',
     body: new URLSearchParams({
       action: 'countriesStackRender',

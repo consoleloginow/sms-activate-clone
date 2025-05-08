@@ -1,7 +1,7 @@
 import type responseExample from './getAllServicesDesktop-response-example.json'
 
 export async function getAllServicesDesktop() {
-  const response = await fetch('https://sms-activate.guru/stubs/apiMobile.php', {
+  const response = await fetch('https://sms-activate.ru/stubs/apiMobile.php', {
     method: 'POST',
     body: new URLSearchParams({
       action: 'getAllServicesDesktop',

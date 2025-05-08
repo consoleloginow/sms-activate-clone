@@ -1,4 +1,4 @@
-POST https://sms-activate.guru/stubs/apiMobile.php
+POST https://sms-activate.ru/stubs/apiMobile.php
 Content-Type: application/x-www-form-urlencoded
 
 action=countriesStackRender
