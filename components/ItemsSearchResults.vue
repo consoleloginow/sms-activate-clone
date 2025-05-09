@@ -54,7 +54,7 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div ref="virtual-scroll" class="max-h-screen overflow-y-auto">
+  <div ref="virtual-scroll" class="max-h-screen h-full overflow-y-auto">
     <div
       class="relative"
       :style="{ height: `${virtualizer.getTotalSize()}px` }"

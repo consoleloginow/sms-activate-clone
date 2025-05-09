@@ -12,7 +12,7 @@ const {
 </script>
 
 <template>
-  <div class="fixed inset-x-0 bottom-0 flex items-center bg-muted p-4 pb-8 shadow">
+  <div class="flex items-center px-4 py-2">
     <div class="relative grow h-10 bg-background border rounded-xl overflow-hidden">
       <Transition
         enter-active-class="animate-in fade-in slide-in-from-left-[50%] duration-250"
