@@ -33,7 +33,12 @@ syncRefs(item, selectedItem)
       </div>
 
       <div v-if="data?.countries">
-        <div v-for="country in data?.countries" :key="country.code" @click="selectedCountry = country">
+        <NuxtLink
+          v-for="country in data?.countries"
+          :key="country.code"
+          to="/chat"
+          @click="selectedCountry = country"
+        >
           <div class="flex items-center py-2">
             <img class="ml-4 size-8 rounded-lg" :src="country.flagUrl">
             <div class="ml-4 grow">
@@ -46,7 +51,7 @@ syncRefs(item, selectedItem)
             </div>
             <span class="mr-4">${{ country.price }}</span>
           </div>
-        </div>
+        </NuxtLink>
       </div>
     </div>
   </div>

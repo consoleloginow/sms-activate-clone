@@ -14,7 +14,7 @@ import { MessagesSquareIcon, ShoppingBagIcon, UserRoundIcon } from 'lucide-vue-n
       <span class="text-xs font-bold">Chat</span>
     </NuxtLink>
 
-    <NuxtLink to="/profile" class="flex flex-col items-center">
+    <NuxtLink to="/" class="flex flex-col items-center">
       <UserRoundIcon />
       <span class="text-xs font-bold">Profile</span>
     </NuxtLink>
